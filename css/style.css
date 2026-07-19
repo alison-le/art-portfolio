@@ -13,6 +13,10 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
 }
 
 .site-title {
@@ -34,7 +38,7 @@ nav a:hover { opacity: 0.6; }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 1rem 2rem 3rem;
 }
@@ -52,15 +56,30 @@ footer {
   color: #888;
 }
 
-/* Works page entries */
-.work-entry {
-  margin-bottom: 3rem;
-  max-width: 500px;
+/* Works page — 3-column grid */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 1rem 2rem 4rem;
 }
 
-.work-entry img { width: 100%; margin-bottom: 0.75rem; }
-.work-entry .details { font-size: 0.9rem; color: #444; }
-.work-entry .status { font-style: italic; }
+.work-entry {
+  max-width: 100%;
+}
+
+.work-entry img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.work-title {
+  font-size: 0.85rem;
+  color: #444;
+  text-align: left;
+}
 
 /* Info / About page */
 .info-page {
