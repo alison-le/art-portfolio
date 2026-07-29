@@ -199,4 +199,35 @@ footer {
 @media (max-width: 700px) {
   .info-page { gap: 2rem; }
   .info-image { max-width: 100%; }
+
+  /* Works page: hide grid images, show only sidebar on mobile */
+  .works-layout {
+    flex-direction: column;
+    padding: 1rem 1.5rem 4rem;
+  }
+
+  .sidebar {
+    flex: none;
+    position: static;
+    width: 100%;
+  }
+
+  .works-grid {
+    display: none;
+  }
+
+  /* Enlarged overlay still works on mobile */
+  .works-grid.viewing {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+  }
+
+  .works-grid.viewing .work-entry.active {
+    position: fixed;
+  }
 }
