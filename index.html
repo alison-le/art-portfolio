@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Alison Le Artist Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,22 +21,22 @@
   </header>
 
   <main class="gallery-grid">
-    <div class="gallery-item">
+    <div class="gallery-item" id="work-flamingo">
       <img src="alisons-art/home-page/flamingo thing.jpg" alt="Flamingo floatie on table" title="Flamingo floatie on table">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" id="work-temple">
       <img src="alisons-art/home-page/temple_vietnam.jpg" alt="Beautiful Temple in the Mountains of Vietnam" title="Beautiful Temple in the Mountains of Vietnam">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" id="work-1321">
       <img src="alisons-art/home-page/IMG_1321.jpg" alt="Portrait of Girl" title="Portrait of Girl">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" id="work-1324">
       <img src="alisons-art/home-page/IMG_1324.jpg" alt="Two chairs and a table by the lake" title="Two chairs and a table by the lake">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" id="work-1327">
       <img src="alisons-art/home-page/IMG_1327.jpg" alt="Cave in Da Nang, Vietnam" title="Cave in Da Nang, Vietnam">
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" id="work-1329">
       <img src="alisons-art/home-page/IMG_1329.jpg" alt="Boy calling someone" title="Boy calling someone">
     </div>
   </main>
@@ -41,5 +44,28 @@
   <footer>
     <p>&copy; 2026 Alison Le</p>
   </footer>
-</body>
+
+  <script>
+    fetch('works.csv')
+      .then(res => res.text())
+      .then(csv => {
+        const lines = csv.trim().split('\n');
+        const headers = lines[0].split(',');
+        for (let i = 1; i < lines.length; i++) {
+          const vals = lines[i].split(',');
+          const entry = {};
+          headers.forEach((h, idx) => { entry[h.trim()] = vals[idx] ? vals[idx].trim() : ''; });
+          if (entry.title) {
+            const el = document.getElementById(entry.id);
+            if (el) {
+              const img = el.querySelector('img');
+              if (img) {
+                img.alt = entry.title;
+                img.title = entry.title;
+              }
+            }
+          }
+        }
+      });
+  </script>
 </html>
